@@ -34,6 +34,9 @@ Plug 'mhinz/vim-startify' " Start screen for Neovim
 Plug 'preservim/nerdtree' " Shows folders for navigation
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'arzg/vim-colors-xcode'
+Plug 'voldikss/vim-floaterm'
+Plug 'vim-airline/vim-airline'
+
 
 call plug#end()
 
@@ -50,13 +53,14 @@ nmap <F2> :NERDTreeToggle<CR>
 " Tabs
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemode=':t'
-nmap <leader>1 :bp<CR>
-nmap <leader>2 :bn<CR>
-nmap <leader>w :bd<CR>
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
 
 let mapleader = " " " Maps spacebar as the leader key.
+nnoremap <leader>1 :bp <CR>
+nnoremap <leader>2 :bn <CR>
+nnoremap <leader>w :bd <CR>
 nnoremap <leader>s :wr <CR>
 nnoremap <leader>q :q <CR>
 nnoremap <leader>h :wincmd h<CR>
@@ -65,10 +69,25 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
-nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>hhhhhhhhh
 inoremap jk <esc>
+nnoremap <leader>term :FloatermNew --height=0.6 --width=1.0 --wintype=float<CR>
 
 
-set mouse=a
+
+" CoC - Tab to be remapped for autocompletion
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+
+
+set mouse=nvic
