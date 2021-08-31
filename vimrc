@@ -36,11 +36,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'arzg/vim-colors-xcode'
 Plug 'voldikss/vim-floaterm'
 Plug 'vim-airline/vim-airline'
-
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-colorscheme nord
+colorscheme no
 
 " NERD Commenter
 nmap <C-/> :NERDCommenterToggle<CR>gv
@@ -54,14 +54,13 @@ nmap <F2> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemode=':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
+nnoremap <leader>1 :bp <CR>
+nnoremap <leader>2 :bn<CR>
+nnoremap <leader>w :bd<CR>
 
 
 let mapleader = " " " Maps spacebar as the leader key.
-nnoremap <leader>1 :bp <CR>
-nnoremap <leader>2 :bn <CR>
-nnoremap <leader>w :bd <CR>
-nnoremap <leader>s :wr <CR>
+nnoremap <leader>s :wr <CR> 
 nnoremap <leader>q :q <CR>
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
